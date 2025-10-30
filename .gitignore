@@ -1,0 +1,9 @@
+backend/.venv
+backend/.env
+backend/data/raw
+.venv
+.env
+*.pyc
+/data/raw
+.gitignore
+backend/.venv

@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "NirmaUni Chatbot Assistant",
+    "version": "1.0",
+    "description": "An AI assistant for the Nirma University website.",
+    "icons": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "permissions": [
+      "storage"
+    ],
+    "host_permissions": [
+      "https://your-api-domain.com/*" 
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "https://www.nirmauni.ac.in/*",
+          "https://nirmauni.ac.in/*"
+        ],
+        "js": ["content.js"],
+        "css": ["chatbot.css"]
+      }
+    ]
+  }
+  
