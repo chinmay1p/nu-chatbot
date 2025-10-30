@@ -1,6 +1,6 @@
 // --- Configuration ---
 // 📌 IMPORTANT: Replace 'https://your-api-domain.com/ask' with the actual deployed URL
-const API_ENDPOINT = 'https://your-api-domain.com/ask'; 
+const API_ENDPOINT = 'https://nu-chatbot-qyrh.onrender.com'; 
 
 // --- UI Construction ---
 function createChatWidget() {
