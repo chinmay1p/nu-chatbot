@@ -12,7 +12,7 @@
       "storage"
     ],
     "host_permissions": [
-      "https://nu-chatbot-qyrh.onrender.com" 
+      "https://nu-chatbot-qyrh.onrender.com/*" 
     ],
     "content_scripts": [
       {
