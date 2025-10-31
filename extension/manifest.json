@@ -4,9 +4,9 @@
     "version": "1.0",
     "description": "An AI assistant for the Nirma University website.",
     "icons": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "16": "dp.jpg",
+      "48": "dp.jpg",
+      "128": "dp.jpg"
     },
     "permissions": [
       "storage"

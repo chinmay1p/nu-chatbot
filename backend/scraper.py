@@ -9,7 +9,6 @@ from urllib.parse import urljoin, urlparse
 import json
 from xml.etree import ElementTree
 
-# Session with retry + headers
 session = requests.Session()
 retries = Retry(total=5, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504])
 session.mount("https://", HTTPAdapter(max_retries=retries))
@@ -199,8 +198,8 @@ if __name__ == "__main__":
     
     data = scraper.crawl(
         start_url="https://www.nirmauni.ac.in",
-        max_pages=5000,  # Deep crawl limit
-        max_depth=5      # Deep recursive scan
+        max_pages=5000,  
+        max_depth=5      
     )
     
     print(f"\n✨ Deep scraping complete! Check 'data/raw/' for results.")

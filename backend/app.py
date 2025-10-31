@@ -21,14 +21,8 @@ app = Flask(__name__, static_folder='../frontend', static_url_path='')
 # Note: You need to specify ALL origins that will access your API.
 # The extension runs *on* these domains, so they are the origins.
 # ----------------------------------------------------------------------
-CORS(app, resources={
-    r"/ask": {"origins": [
-        "https://nirmauni.ac.in", 
-        "https://www.nirmauni.ac.in", 
-        "http://127.0.0.1:5000" # Keep for local testing if needed
-    ]},
-    r"/health": {"origins": "*"} # Health check can be public
-})
+CORS(app, resources={r"/*": {"origins": ["https://nirmauni.ac.in", "https://www.nirmauni.ac.in"]}}) 
+
 # ----------------------------------------------------------------------
 
 
@@ -120,31 +114,17 @@ def home():
 # to match the request used in the 'content.js' file provided earlier.
 # The payload is also simplified to match the extension's JS.
 # ----------------------------------------------------------------------
-@app.route('/ask', methods=['POST'])
+@app.route('/chat', methods=['POST'])
+@cross_origin(origins=['https://nirmauni.ac.in', 'https://www.nirmauni.ac.in'])
 def chat():
-    # Note: The extension sends payload as {input: "..."}
     try:
         data = request.get_json()
-        user_message = data.get("input", "").strip() # Use 'input' key
-
-        if not user_message:
-            return jsonify({"error": "Empty message"}), 400
-
-        # Get response from QA chain
-        print(f"📥 Query: {user_message}")
-        result = qa_chain.invoke({"query": user_message})
-
-        answer = result["result"]
-        # Source documents are often too verbose for a chat response, 
-        # but you can decide to format them better later.
-        sources = [doc.metadata.get("source", "Unknown") for doc in result.get("source_documents", [])]
-
-        print(f"📤 Response: {answer[:100]}...")
-        # Note: The extension expects the key 'response'
-        return jsonify({"response": answer, "sources": sources[:3], "status": "success"})
-
+        if not data or "message" not in data:
+            return jsonify({"error": "No message provided"}), 400
+        # ... (rest of your existing chat function logic)
+        
     except Exception as e:
-        print(f" Error: {e}")
+        # ... (your existing error handling)
         return jsonify({"error": "An error occurred processing your request", "details": str(e)}), 500
 
 # ----------------------------------------------------------------------
