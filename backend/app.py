@@ -1,4 +1,4 @@
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import os
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, send_from_directory
